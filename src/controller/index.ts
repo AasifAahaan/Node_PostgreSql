@@ -25,4 +25,13 @@ export class UserController {
             res.status(500).json({ error: error.message });
         }
     }
+
+    static async handleGetAllVehiclesController(req: Request, res: Response) {
+        try {
+            const response = await Vehicle.findAll();
+            res.status(200).json({ success: true, response })
+        } catch (error: any) {
+            res.status(500).json({ error: error.message });
+        }
+    }
 }
