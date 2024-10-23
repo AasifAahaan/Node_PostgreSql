@@ -2,7 +2,7 @@ import { Router } from "express";
 import { UserController } from "../controller";
 import { userValidations } from "../validations/userValidation";
 import { validate } from "../middleware/validate";
-import { CityController } from "../controller/city-controller";
+import { BookingController } from "../controller/booking-controller";
 const routes = Router();
 
 routes.route("/add-user").post(userValidations, validate, UserController.handleAddUserController)
@@ -10,9 +10,12 @@ routes.route("/vehicle").post(UserController.handleAddVehicleController)
 
 routes.route("/vehicles").get(UserController.handleGetAllVehiclesController)
 
-routes.route("/add-booking").post(CityController?.handleAddBookingController)
+routes.route("/add-booking").post(BookingController?.handleAddBookingController)
+routes.route("/bookings").get(BookingController?.fetchBookingsController)
+routes.route("/booking/:id").delete(BookingController?.deleteBookingByIdController)
+routes.route("/search/:key").get(BookingController?.searchController)
 
-routes.route("/bookings").get(CityController.fetchBookingsController)
+routes.route("/booking/:id").get(BookingController.getBookingById);
 
 
 
