@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Booking from "../model/booking";
-import { Op, Sequelize } from "sequelize";
+import { Op } from "sequelize";
 
 export class BookingController {
     static async handleAddBookingController(req: Request, res: Response) {
@@ -11,6 +11,7 @@ export class BookingController {
                 number,
                 email,
                 address,
+                category,
                 city,
                 state,
                 option,
@@ -27,6 +28,7 @@ export class BookingController {
                 number,
                 email,
                 address,
+                category,
                 city,
                 state,
                 option,
@@ -106,6 +108,28 @@ export class BookingController {
         } catch (error) {
             console.error(error);
             return res.status(500).json({ error: 'An error occurred while retrieving the booking' });
+        }
+    }
+
+    static async updateBookingById(req: Request, res: Response) {
+        const { id } = req.params;
+        const updateData = req.body;
+
+        try {
+            const [updatedRows] = await Booking.update(updateData, {
+                where: {
+                    id: id,
+                },
+            });
+
+            if (updatedRows > 0) {
+                res.status(200).json({ message: `Booking with ID ${id} updated successfully.` });
+            } else {
+                res.status(404).json({ message: `Booking with ID ${id} not found or no changes made.` });
+            }
+        } catch (error: any) {
+            console.error('Error updating booking:', error);
+            res.status(500).json({ message: 'Internal Server Error', error: error.message });
         }
     }
 }

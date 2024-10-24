@@ -9,6 +9,7 @@ interface BookingAttributes {
     number: string,
     email: string,
     address: string,
+    category: string,
     city: string,
     state: string,
     option: string,
@@ -29,6 +30,7 @@ class Booking extends Model<BookingAttributes, BookingCreationAttributes> implem
     public number!: string;
     public email!: string;
     public address!: string;
+    public category!: string;
     public city!: string;
     public state!: string;
     public option!: string;
@@ -72,6 +74,10 @@ Booking.init(
             },
         },
         address: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        category: {
             type: DataTypes.STRING,
             allowNull: false,
         },
