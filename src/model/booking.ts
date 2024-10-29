@@ -15,7 +15,7 @@ interface BookingAttributes {
     option: string,
     pickupLocation: string,
     pickupDateTime: Date,
-    dropDateTime: Date,
+    // dropDateTime: Date,
 
     paymentMethod: string,
     paymentType: string,
@@ -36,7 +36,7 @@ class Booking extends Model<BookingAttributes, BookingCreationAttributes> implem
     public option!: string;
     public pickupLocation!: string;
     public pickupDateTime!: Date;
-    public dropDateTime!: Date;
+    // public dropDateTime!: Date;
 
     public paymentMethod!: string;
     public paymentType!: string;
@@ -98,10 +98,6 @@ Booking.init(
             allowNull: false,
         },
         pickupDateTime: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
-        dropDateTime: {
             type: DataTypes.DATE,
             allowNull: false,
         },
