@@ -47,7 +47,7 @@ app.use(express.static("public"))
 app.use("/api", userRoutes)
 
 app.get("/api/get", (req: Request, res: Response) => {
-  res.send("Aasif Alvi");
+  res.send("Aasif Alvi...");
 })
 
 connectDatabase().then(() => {

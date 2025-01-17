@@ -1,15 +1,20 @@
 import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv';
 
-// export const sequelize = new Sequelize('node', 'postgres', 'aasif@123', {
-//     host: 'localhost',
-//     dialect: 'postgres',
-// });
+    dotenv.config();
 
-export const sequelize = new Sequelize('node', 'postgres', 'aasif@123', {
-    host: 'host.docker.internal',
+export const sequelize = new Sequelize(process.env.DB_NAME || '', process.env.DB_USER || '', process.env.DB_PASSWORD || '', {
+    host: process.env.DB_HOST || 'localhost', 
     dialect: 'postgres',
-    port: 5432,
+    port: parseInt(process.env.DB_PORT || '5432', 10), 
 });
+
+// FOR DOCKER... 
+// export const sequelize = new Sequelize(process.env.DB_NAME || '', process.env.DB_USER || '', process.env.DB_PASSWORD || '', {
+//     host: 'host.docker.internal',
+//     dialect: 'postgres',
+//     port: 5432,
+// });
 
 export const connectDatabase = async () => {
     try {
