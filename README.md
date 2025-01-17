@@ -148,3 +148,23 @@ bash
 Copy
 docker image prune
 Description: Removes unused images that are not associated with any containers.
+
+
+
+NOTE:* - 
+
+docker stop node_postgresql_container
+docker rm node_postgresql_container
+docker rm -f node_postgresql_container
+docker ps -a
+docker ps -aq
+docker ps
+docker logs -f node_postgresql_container
+
+Running the Container with Interactive Mode: - 
+docker run -v "C:/Users/USER/Desktop/Projects/Node_PostgreSql:/app" -p 8080:8080 -it --name node_postgresql_container node-app-image
+
+Run the Container with Real-Time Logs : -
+docker run -v "C:/Users/USER/Desktop/Projects/Node_PostgreSql:/app" -p 8080:8080 --name node_postgresql_container node-app-image
+
+![alt text](image.png)
