@@ -17,11 +17,14 @@ routes.route("/booking/:id").delete(BookingController?.deleteBookingByIdControll
 routes.route("/search/:key").get(BookingController?.searchController)
 
 routes.route("/booking/:id").get(BookingController.getBookingById);
-+
+
 
 
 routes.route("/save-states").post(StateController?.handleSaveStatesController)
 routes.route("/fetch-states").get(StateController?.fetchStatesController)
+
+// Post office
+routes.route("/postOffices").post(StateController?.addPostOffice)
 
 
 

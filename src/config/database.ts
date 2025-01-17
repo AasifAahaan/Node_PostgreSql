@@ -1,8 +1,14 @@
 import { Sequelize } from 'sequelize';
 
+// export const sequelize = new Sequelize('node', 'postgres', 'aasif@123', {
+//     host: 'localhost',
+//     dialect: 'postgres',
+// });
+
 export const sequelize = new Sequelize('node', 'postgres', 'aasif@123', {
-    host: 'localhost',
+    host: 'host.docker.internal',
     dialect: 'postgres',
+    port: 5432,
 });
 
 export const connectDatabase = async () => {

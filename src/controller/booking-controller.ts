@@ -17,7 +17,7 @@ export class BookingController {
                 option,
                 pickupLocation,
                 pickupDateTime,
-                dropDateTime,
+                // dropDateTime,
                 paymentMethod,
                 paymentType
             } = req.body;

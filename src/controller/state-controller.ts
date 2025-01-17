@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import State from "../model/state";
+import PostOffice from "../model/postOffice";
 
 export class StateController {
     static async handleSaveStatesController(req: Request, res: Response) {
@@ -19,6 +20,43 @@ export class StateController {
             res.status(200).json({ success: true, response })
         } catch (error: any) {
             res.status(500).json({ error: error.message });
+        }
+    }
+
+    static async addPostOffice(req: Request, res: Response) {
+        // try {
+        //     const bulkData = req.body;
+        //     console.log({ bulkData })
+
+        //     if (!Array.isArray(bulkData) || bulkData.length === 0) {
+        //         return res.status(400).json({ message: 'Invalid data format' });
+        //     }
+
+        //     // Perform bulk insertion
+        //     const result = await PostOffice.bulkCreate(bulkData, { validate: true });
+
+        //     res.status(200).json({
+        //         message: 'Bulk data uploaded successfully',
+        //         insertedRecords: result.length,
+        //     });
+        // } catch (error) {
+        //     console.error('Error uploading bulk data:', error);
+        //     res.status(500).json({ message: 'Failed to upload bulk data', error });
+        // }
+
+        try {
+            const bulkData = req.body;
+            const CHUNK_SIZE = 10000;
+
+            for (let i = 0; i < bulkData.length; i += CHUNK_SIZE) {
+                const chunk = bulkData.slice(i, i + CHUNK_SIZE);
+                await PostOffice.bulkCreate(chunk, { validate: true });
+            }
+
+            res.status(200).send({ message: "Data uploaded successfully!" });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ error: "Error uploading data" });
         }
     }
 }

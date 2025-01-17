@@ -40,11 +40,15 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ error: "Internal Server Error" });
 });
 
-app.use(express.json({ limit: "20mb" }))
-app.use(express.urlencoded({ limit: "20mb", extended: true }))
+app.use(express.json({ limit: "10000mb" }))
+app.use(express.urlencoded({ limit: "10000mb", extended: true }))
 app.use(express.static("public"))
 
 app.use("/api", userRoutes)
+
+app.get("/api/get", (req: Request, res: Response) => {
+  res.send("Aasif Alvi");
+})
 
 connectDatabase().then(() => {
   app.listen(port, () => {
